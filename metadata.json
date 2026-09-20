@@ -1,0 +1,6 @@
+{
+  "name": "Ire-Akari Estate",
+  "description": "A premium, modern residential estate landing page in Nigeria.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
