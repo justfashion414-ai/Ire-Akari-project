@@ -3,11 +3,10 @@ import { motion } from 'motion/react';
 import { Mail, ArrowRight, ShieldCheck, Phone } from 'lucide-react';
 
 interface CallToActionProps {
-  onLoginClick: () => void;
   onContactClick: () => void;
 }
 
-export default function CallToAction({ onLoginClick, onContactClick }: CallToActionProps) {
+export default function CallToAction({ onContactClick }: CallToActionProps) {
   return (
     <section className="relative py-28 md:py-36 bg-estate-secondary text-white text-center overflow-hidden">
       {/* Premium organic abstract glow in center */}
@@ -61,20 +60,11 @@ export default function CallToAction({ onLoginClick, onContactClick }: CallToAct
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 max-w-lg mx-auto"
         >
           <button
-            onClick={onLoginClick}
-            className="w-full sm:w-auto px-10 py-5 bg-estate-accent text-estate-secondary font-black rounded-full tracking-wider text-sm hover:bg-white hover:text-estate-secondary transition-all duration-300 shadow-2xl flex items-center justify-center gap-3 transform hover:-translate-y-1 active:scale-95 cursor-pointer border-2 border-estate-accent"
-            id="cta-resident-login-btn"
-          >
-            <span className="font-black uppercase tracking-wider">Resident Portal</span>
-            <ArrowRight className="w-5 h-5" strokeWidth={3} />
-          </button>
-          
-          <button
             onClick={onContactClick}
-            className="w-full sm:w-auto px-10 py-5 bg-white/10 hover:bg-white/20 text-white font-black rounded-full tracking-wider text-sm border-2 border-white/40 hover:border-white transition-all duration-300 flex items-center justify-center gap-3 transform hover:-translate-y-1 active:scale-95 cursor-pointer backdrop-blur-md shadow-xl"
+            className="w-full sm:w-auto px-10 py-5 bg-estate-accent text-estate-secondary font-black rounded-full tracking-wider text-sm hover:bg-white hover:text-estate-secondary transition-all duration-300 shadow-2xl flex items-center justify-center gap-3 transform hover:-translate-y-1 active:scale-95 cursor-pointer border-2 border-estate-accent"
             id="cta-contact-office-btn"
           >
-            <Phone className="w-5 h-5 text-estate-accent" strokeWidth={3} />
+            <Phone className="w-5 h-5 text-estate-secondary" strokeWidth={3} />
             <span className="font-black uppercase tracking-wider">Contact Estate Office</span>
           </button>
         </motion.div>

@@ -6,10 +6,9 @@ import EditableImage from './EditableImage';
 
 interface HeroProps {
   onExploreClick: () => void;
-  onLoginClick: (type?: 'resident' | 'landlord' | 'admin') => void;
 }
 
-export default function Hero({ onExploreClick, onLoginClick }: HeroProps) {
+export default function Hero({ onExploreClick }: HeroProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -57,14 +56,6 @@ export default function Hero({ onExploreClick, onLoginClick }: HeroProps) {
         </div>
 
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => onLoginClick('resident')}
-            className="hidden md:flex items-center gap-2 px-6 py-3 text-sm font-extrabold tracking-wider uppercase border-2 border-estate-accent rounded-full text-estate-accent bg-estate-secondary/80 hover:bg-estate-accent hover:text-estate-secondary transition-all duration-300 shadow-md hover:scale-105"
-            id="btn-header-login"
-          >
-            <User className="w-4 h-4" strokeWidth={3} />
-            <span className="font-extrabold text-xs">Resident Login</span>
-          </button>
         </div>
       </header>
 
@@ -119,14 +110,6 @@ export default function Hero({ onExploreClick, onLoginClick }: HeroProps) {
           >
             <Compass className="w-5 h-5" strokeWidth={3} />
             <span className="font-black tracking-wider uppercase">Explore Estate</span>
-          </button>
-          <button
-            onClick={() => onLoginClick('resident')}
-            className="w-full sm:w-auto px-10 py-5 bg-white/10 hover:bg-white/20 text-white font-black rounded-full tracking-wider text-sm border-2 border-white/40 hover:border-white transition-all duration-300 flex items-center justify-center gap-3 transform hover:-translate-y-1 active:scale-95 backdrop-blur-md shadow-xl"
-            id="hero-login-btn"
-          >
-            <User className="w-5 h-5 text-estate-accent" strokeWidth={3} />
-            <span className="font-black tracking-wider uppercase">Resident Login</span>
           </button>
         </motion.div>
       </div>

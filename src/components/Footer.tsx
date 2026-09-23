@@ -4,10 +4,9 @@ import { ESTATE_DETAILS } from '../data';
 
 interface FooterProps {
   onLinkClick: (sectionId: string) => void;
-  onLoginClick: () => void;
 }
 
-export default function Footer({ onLinkClick, onLoginClick }: FooterProps) {
+export default function Footer({ onLinkClick }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -92,14 +91,6 @@ export default function Footer({ onLinkClick, onLoginClick }: FooterProps) {
                     Photo Gallery
                   </button>
                 </li>
-                <li>
-                  <button
-                    onClick={() => onLinkClick('estate-map-section')}
-                    className="hover:text-estate-accent transition-colors cursor-pointer text-left text-sm uppercase tracking-wider block"
-                  >
-                    Interactive Map
-                  </button>
-                </li>
                 <li className="pt-3 border-t border-white/10 mt-2">
                   <button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -114,27 +105,17 @@ export default function Footer({ onLinkClick, onLoginClick }: FooterProps) {
 
             <div className="space-y-4">
               <span className="font-display font-black text-sm uppercase tracking-widest text-estate-accent block">
-                Member Portals
+                Resources
               </span>
               <ul className="space-y-2 text-xs text-estate-clay font-sans font-bold">
                 <li>
-                  <button onClick={onLoginClick} className="hover:text-estate-accent transition-colors cursor-pointer text-left text-sm uppercase tracking-wider">
-                    Resident Login
-                  </button>
-                </li>
-                <li>
-                  <button onClick={onLoginClick} className="hover:text-estate-accent transition-colors cursor-pointer text-left text-sm uppercase tracking-wider">
-                    Landlord Registry
-                  </button>
-                </li>
-                <li>
-                  <button onClick={onLoginClick} className="hover:text-estate-accent transition-colors cursor-pointer text-left text-sm uppercase tracking-wider">
-                    Administrator Gate
-                  </button>
+                  <a href="#" className="hover:text-estate-accent transition-colors cursor-pointer text-left text-sm uppercase tracking-wider block">
+                    Facility Helpdesk
+                  </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-estate-accent transition-colors cursor-pointer text-left text-sm uppercase tracking-wider block">
-                    Facility Helpdesk
+                    Security Hotline
                   </a>
                 </li>
               </ul>
