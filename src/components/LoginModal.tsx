@@ -134,19 +134,19 @@ export default function LoginModal({ isOpen, onClose, initialType = 'resident' }
 
   // Resident Database (Admin Only)
   const [residentsDb, setResidentsDb] = useState([
-    { id: 'R001', name: 'Emeka Obi', zone: 'Zone Three', unit: 'Block B2, Flat 4', status: 'Active', securityCheck: 'Passed' },
-    { id: 'R002', name: 'Alhaji Idris Usman', zone: 'Zone One', unit: 'Broad St, Plot 12', status: 'Active', securityCheck: 'Passed' },
-    { id: 'R003', name: 'Chief Mrs. Florence Balogun', zone: 'Zone Four', unit: 'Plot 4 Villa', status: 'Active', securityCheck: 'Passed' },
-    { id: 'R004', name: 'Kemi Adesina', zone: 'Zone Two', unit: 'Orchard Dr, Block 3', status: 'Active', securityCheck: 'Passed' },
-    { id: 'R005', name: 'Obinna Okafor', zone: 'Zone Three', unit: 'Coexistence Blvd, Pl 5', status: 'Active', securityCheck: 'Passed' },
+    { id: 'R001', name: 'Emeka Obi', zone: 'Parakoyi/Oloya Zone', unit: 'Block B2, Flat 4', status: 'Active', securityCheck: 'Passed' },
+    { id: 'R002', name: 'Alhaji Idris Usman', zone: 'Pace Setter Zone', unit: 'Broad St, Plot 12', status: 'Active', securityCheck: 'Passed' },
+    { id: 'R003', name: 'Chief Mrs. Florence Balogun', zone: 'Ogun/Osun/NUT Zone', unit: 'Plot 4 Villa', status: 'Active', securityCheck: 'Passed' },
+    { id: 'R004', name: 'Kemi Adesina', zone: 'Unity & Peace Zone', unit: 'Orchard Dr, Block 3', status: 'Active', securityCheck: 'Passed' },
+    { id: 'R005', name: 'Obinna Okafor', zone: 'Parakoyi/Oloya Zone', unit: 'Coexistence Blvd, Pl 5', status: 'Active', securityCheck: 'Passed' },
   ]);
 
   // Zone Chairmen Info (Admin Only)
   const chairmen = [
-    { zone: "Zone One", name: "Chief Alao Ojo", phone: "+234 803 777 1111", activity: "Broad Street RFID gates calibration" },
-    { zone: "Zone Two", name: "Pastor Kolawole Alabi", phone: "+234 802 888 2222", activity: "Botanical garden layout expansion" },
-    { zone: "Zone Three", name: "Engr. Mustapha Yusuf", phone: "+234 805 999 3333", activity: "Coordinating smart microgrid check" },
-    { zone: "Zone Four", name: "Chief (Mrs) Toyin Adeyemi", phone: "+234 809 111 4444", activity: "Sunset heights road asphalt repair" },
+    { zone: "Pace Setter Zone", name: "Chief Alao Ojo", phone: "+234 803 777 1111", activity: "Broad Street RFID gates calibration" },
+    { zone: "Unity & Peace Zone", name: "Pastor Kolawole Alabi", phone: "+234 802 888 2222", activity: "Botanical garden layout expansion" },
+    { zone: "Parakoyi/Oloya Zone", name: "Engr. Mustapha Yusuf", phone: "+234 805 999 3333", activity: "Coordinating smart microgrid check" },
+    { zone: "Ogun/Osun/NUT Zone", name: "Chief (Mrs) Toyin Adeyemi", phone: "+234 809 111 4444", activity: "Sunset heights road asphalt repair" },
   ];
 
   // Committees Info (Admin Only)

@@ -10,15 +10,10 @@ import Announcements from './components/Announcements';
 import President from './components/President';
 import FloatingPhotoGrid from './components/FloatingPhotoGrid';
 import Gallery from './components/Gallery';
-import InteractiveMap from './components/InteractiveMap';
 import CallToAction from './components/CallToAction';
-import LoginModal from './components/LoginModal';
 import Footer from './components/Footer';
-import { LoginType } from './types';
 
 export default function App() {
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [loginRole, setLoginRole] = useState<LoginType>('resident');
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [contactSuccess, setContactSuccess] = useState(false);
 
@@ -57,11 +52,6 @@ export default function App() {
     }
   };
 
-  const handleOpenLogin = (type: LoginType = 'resident') => {
-    setLoginRole(type);
-    setIsLoginOpen(true);
-  };
-
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
@@ -80,23 +70,12 @@ export default function App() {
     }, 1500);
   };
 
-  if (isLoginOpen) {
-    return (
-      <LoginModal
-        isOpen={isLoginOpen}
-        onClose={() => setIsLoginOpen(false)}
-        initialType={loginRole}
-      />
-    );
-  }
-
   return (
     <div className="relative font-sans text-estate-secondary antialiased bg-estate-cream selection:bg-estate-accent selection:text-estate-secondary">
       
       {/* 1. HERO SECTION */}
       <Hero
         onExploreClick={() => scrollToSection('estate-story-section')}
-        onLoginClick={(type) => handleOpenLogin(type)}
       />
 
       {/* 2. ESTATE STORY SECTION */}
@@ -132,21 +111,14 @@ export default function App() {
         <Gallery />
       </div>
 
-      {/* 8. INTERACTIVE MAP SECTION */}
-      <div id="estate-map-section">
-        <InteractiveMap />
-      </div>
-
       {/* 9. CALL TO ACTION */}
       <CallToAction
-        onLoginClick={() => handleOpenLogin('resident')}
         onContactClick={() => setIsContactOpen(true)}
       />
 
       {/* 10. REFINED MINIMALIST FOOTER */}
       <Footer
         onLinkClick={(sectionId) => scrollToSection(sectionId)}
-        onLoginClick={() => handleOpenLogin('resident')}
       />
 
 
