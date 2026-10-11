@@ -67,24 +67,14 @@ async function startServer() {
 
   // Runtime Config Endpoint (matches /.netlify/functions/config)
   app.get("/api/config", (req, res) => {
-    let appletConfig: Record<string, string> = {};
-    try {
-      const cfgPath = path.join(process.cwd(), "firebase-applet-config.json");
-      if (fs.existsSync(cfgPath)) {
-        appletConfig = JSON.parse(fs.readFileSync(cfgPath, "utf-8"));
-      }
-    } catch {
-      // Ignore error
-    }
-
     res.json({
       firebase: {
-        apiKey: process.env.FIREBASE_API_KEY || process.env.VITE_FIREBASE_API_KEY || appletConfig.apiKey,
-        authDomain: process.env.FIREBASE_AUTH_DOMAIN || process.env.VITE_FIREBASE_AUTH_DOMAIN || appletConfig.authDomain,
-        projectId: process.env.FIREBASE_PROJECT_ID || process.env.VITE_FIREBASE_PROJECT_ID || appletConfig.projectId,
-        storageBucket: process.env.FIREBASE_STORAGE_BUCKET || process.env.VITE_FIREBASE_STORAGE_BUCKET || appletConfig.storageBucket,
-        messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || appletConfig.messagingSenderId,
-        appId: process.env.FIREBASE_APP_ID || process.env.VITE_FIREBASE_APP_ID || appletConfig.appId,
+        apiKey: process.env.FIREBASE_API_KEY || process.env.VITE_FIREBASE_API_KEY || "",
+        authDomain: process.env.FIREBASE_AUTH_DOMAIN || process.env.VITE_FIREBASE_AUTH_DOMAIN || "",
+        projectId: process.env.FIREBASE_PROJECT_ID || process.env.VITE_FIREBASE_PROJECT_ID || "",
+        storageBucket: process.env.FIREBASE_STORAGE_BUCKET || process.env.VITE_FIREBASE_STORAGE_BUCKET || "",
+        messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
+        appId: process.env.FIREBASE_APP_ID || process.env.VITE_FIREBASE_APP_ID || "",
       },
       cloudinaryConfigured: Boolean(
         (process.env.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_NAME || process.env.CLOUDINARY_CLOUD || process.env.VITE_CLOUDINARY_CLOUD_NAME) &&
@@ -92,6 +82,49 @@ async function startServer() {
         (process.env.CLOUDINARY_API_SECRET || process.env.VITE_CLOUDINARY_API_SECRET)
       ),
     });
+  });
+
+  // Download complete .env file with live environment variables for Netlify import
+  app.get("/api/download-env", (req, res) => {
+    const currentCloudName =
+      process.env.CLOUDINARY_CLOUD_NAME ||
+      process.env.CLOUDINARY_NAME ||
+      process.env.CLOUDINARY_CLOUD ||
+      process.env.VITE_CLOUDINARY_CLOUD_NAME ||
+      "";
+    const currentApiKey =
+      process.env.CLOUDINARY_API_KEY ||
+      process.env.VITE_CLOUDINARY_API_KEY ||
+      "";
+    const currentApiSecret =
+      process.env.CLOUDINARY_API_SECRET ||
+      process.env.VITE_CLOUDINARY_API_SECRET ||
+      "";
+
+    const envLines = [
+      "# ==========================================",
+      "# IRE-AKARI ESTATE PORTAL — NETLIFY .ENV FILE",
+      "# ==========================================",
+      "",
+      "# 1. Firebase Configuration",
+      `VITE_FIREBASE_API_KEY=${process.env.FIREBASE_API_KEY || process.env.VITE_FIREBASE_API_KEY || ""}`,
+      `VITE_FIREBASE_AUTH_DOMAIN=${process.env.FIREBASE_AUTH_DOMAIN || process.env.VITE_FIREBASE_AUTH_DOMAIN || ""}`,
+      `VITE_FIREBASE_PROJECT_ID=${process.env.FIREBASE_PROJECT_ID || process.env.VITE_FIREBASE_PROJECT_ID || ""}`,
+      `VITE_FIREBASE_STORAGE_BUCKET=${process.env.FIREBASE_STORAGE_BUCKET || process.env.VITE_FIREBASE_STORAGE_BUCKET || ""}`,
+      `VITE_FIREBASE_MESSAGING_SENDER_ID=${process.env.FIREBASE_MESSAGING_SENDER_ID || process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || ""}`,
+      `VITE_FIREBASE_APP_ID=${process.env.FIREBASE_APP_ID || process.env.VITE_FIREBASE_APP_ID || ""}`,
+      "",
+      "# 2. Cloudinary API Keys (Used by Netlify Functions)",
+      `CLOUDINARY_CLOUD_NAME=${currentCloudName}`,
+      `CLOUDINARY_API_KEY=${currentApiKey}`,
+      `CLOUDINARY_API_SECRET=${currentApiSecret}`,
+      "",
+    ];
+
+    const envContent = envLines.join("\r\n");
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Content-Disposition", 'attachment; filename="netlify.env"');
+    res.send(envContent);
   });
 
   // Request logging for API routes
