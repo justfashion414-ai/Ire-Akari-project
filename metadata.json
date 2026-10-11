@@ -1,6 +1,6 @@
 {
   "name": "Ire-Akari Estate",
-  "description": "A premium, modern residential estate landing page in Nigeria.",
+  "description": "The official 30th Anniversary Jubilee portal for Ire-Akari Estate residents.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
