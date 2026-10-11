@@ -1,5 +1,5 @@
 import React from 'react';
-import { Palmtree, Mail, Phone, MapPin, Shield, Instagram, Twitter, Linkedin, Facebook, ArrowUp } from 'lucide-react';
+import { Palmtree, Mail, Phone, MapPin, Shield, Camera, Share2, Globe, MessageSquare, ArrowUp } from 'lucide-react';
 import { ESTATE_DETAILS } from '../data';
 
 interface FooterProps {
@@ -40,10 +40,10 @@ export default function Footer({ onLinkClick }: FooterProps) {
             {/* Social handles */}
             <div className="flex items-center gap-3">
               {[
-                { icon: Twitter, url: "#" },
-                { icon: Instagram, url: "#" },
-                { icon: Linkedin, url: "#" },
-                { icon: Facebook, url: "#" }
+                { icon: Globe, url: "#" },
+                { icon: Camera, url: "#" },
+                { icon: Share2, url: "#" },
+                { icon: MessageSquare, url: "#" }
               ].map((social, i) => {
                 const IconComp = social.icon;
                 return (

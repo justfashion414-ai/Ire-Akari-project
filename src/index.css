@@ -2,18 +2,48 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: 'Sora', sans-serif;
+  --font-sans: 'DM Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Sora', sans-serif;
   
-  /* Natural Tones Inspired Colors - Strengthened for high contrast and bold legibility */
-  --color-estate-primary: #2C3C28;     /* Rich Deep Forest Green */
-  --color-estate-secondary: #1C2318;   /* Bold Charcoal Forest-Black */
-  --color-estate-accent: #B45309;      /* Strong, High-Contrast Terracotta-Gold Accent (readable on light, vibrant on dark) */
-  --color-estate-accent-hover: #2C3C28;/* Hover Deep Green */
-  --color-estate-cream: #FDFCF7;       /* Bright Crisp Premium Cream Background */
-  --color-estate-clay: #EFECE3;        /* Rich Natural Sand Tone */
-  --color-estate-sage: #3D4F37;        /* Strong Visible Deep Olive-Sage */
-  --color-estate-charcoal: #1C2318;    /* Deep Solid Dark Background */
+  /* Anniversary Design Sample Colors */
+  --color-ann-bg: #EEEDF3;
+  --color-ann-surface: #FFFFFF;
+  --color-ann-ink: #14262D;
+  --color-ann-muted: #5A6970;
+  --color-ann-line: #DAD8E3;
+  --color-ann-accent: #0E6B75;
+  --color-ann-soft: #E1EFF0;
+  --color-ann-heart: #D23B5F;
+  --color-ann-hero: #0B3A43;
+  --color-ann-mint: #0E6B75;
+
+  /* Natural Tones Inspired Colors */
+  --color-estate-primary: #2C3C28;
+  --color-estate-secondary: #1C2318;
+  --color-estate-accent: #B45309;
+  --color-estate-accent-hover: #2C3C28;
+  --color-estate-cream: #FDFCF7;
+  --color-estate-clay: #EFECE3;
+  --color-estate-sage: #3D4F37;
+  --color-estate-charcoal: #1C2318;
+}
+
+@keyframes floatUpInfinite {
+  0% { transform: translate3d(0, 120vh, 0) rotate(var(--rotate, 0deg)); }
+  100% { transform: translate3d(0, -180vh, 0) rotate(var(--rotate, 0deg)); }
+}
+
+@keyframes sheen {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+
+.animate-sheen {
+  background: linear-gradient(115deg, #fff 5%, #E6DCFB 30%, #BDE8EB 55%, #F7DFC9 80%, #fff 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: sheen 2.2s ease-out 1 both;
 }
 
 /* Base resets & additions */
@@ -157,3 +187,22 @@
 
 
 
+
+/* Vertical Scrolling Grid Animations */
+@keyframes scroll-vertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes scroll-vertical-reverse {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+.animate-scroll-vertical-slow {
+  animation: scroll-vertical 40s linear infinite;
+}
+
+.animate-scroll-vertical-reverse {
+  animation: scroll-vertical-reverse 50s linear infinite;
+}

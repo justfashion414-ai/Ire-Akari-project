@@ -12,8 +12,10 @@ import FloatingPhotoGrid from './components/FloatingPhotoGrid';
 import Gallery from './components/Gallery';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
+import AnniversaryPortal from './components/AnniversaryPortal';
 
 export default function App() {
+  const [view, setView] = useState<'anniversary' | 'legacy'>('anniversary');
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [contactSuccess, setContactSuccess] = useState(false);
 
@@ -70,9 +72,23 @@ export default function App() {
     }, 1500);
   };
 
+  if (view === 'anniversary') {
+    return <AnniversaryPortal onBackToMain={() => setView('legacy')} />;
+  }
+
   return (
     <div className="relative font-sans text-estate-secondary antialiased bg-estate-cream selection:bg-estate-accent selection:text-estate-secondary">
       
+      {/* Back to Anniversary Portal Button */}
+      <div className="fixed bottom-24 left-6 z-50">
+        <button 
+          onClick={() => setView('anniversary')}
+          className="bg-estate-primary text-estate-accent px-4 py-2 rounded-full shadow-xl border border-estate-accent font-bold text-xs hover:scale-105 transition-transform"
+        >
+          Anniversary Portal
+        </button>
+      </div>
+
       {/* 1. HERO SECTION */}
       <Hero
         onExploreClick={() => scrollToSection('estate-story-section')}
@@ -240,7 +256,7 @@ export default function App() {
                       </div>
                       <h4 className="text-xl font-display font-bold text-estate-primary">Dispatch Transmitted</h4>
                       <p className="text-xs text-estate-sage max-w-sm mx-auto">
-                        Your message has been successfully routed to the Meridian Crest Residents Association Secretariat. We will respond via email shortly.
+                        Your message has been successfully routed to the Ire-Akari Residents Association Secretariat. We will respond via email shortly.
                       </p>
                     </motion.div>
                   )}
