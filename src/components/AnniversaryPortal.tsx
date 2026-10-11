@@ -3750,6 +3750,35 @@ function AdminDashboardModal({
                                 </button>
                               )}
                             </div>
+
+                            <div className="mt-3">
+                              <button
+                                type="button"
+                                onClick={async () => {
+                                  try {
+                                    const res = await fetch('/api/download-env');
+                                    if (!res.ok) throw new Error('Failed to fetch env file');
+                                    const text = await res.text();
+                                    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                                    const url = window.URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.href = url;
+                                    a.download = '.env';
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
+                                    window.URL.revokeObjectURL(url);
+                                    showToast('Downloaded .env file!');
+                                  } catch {
+                                    showToast('Could not download .env file.', 'error');
+                                  }
+                                }}
+                                className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#C9A24B] text-[#14262D] text-xs font-black uppercase tracking-widest hover:opacity-95 transition-all shadow-sm"
+                              >
+                                <Download className="w-4 h-4" />
+                                Download Netlify .env File
+                              </button>
+                            </div>
                           </div>
 
                           <div>
